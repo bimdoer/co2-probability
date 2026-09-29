@@ -1,6 +1,6 @@
 # Data
 
-This folder contains datasets used for probabilistic analysis of construction cost overruns.
+Datasets for probabilistic prediction of building GHG intensity (`GHG_sum_em_m2a`).
 
 ## Folder Structure
 
@@ -9,33 +9,23 @@ This folder contains datasets used for probabilistic analysis of construction co
 
 ---
 
-## Construction Project Cost Data (Kaggle)
+## CarbEnMats / GBDB
 
-**Dataset used in this project**
+**Primary dataset for this project**
 
 | Field | Value |
 |-------|-------|
-| **Title** | Construction Project Cost Data |
-| **Author** | prasadahirekar |
-| **Source** | [Kaggle](https://www.kaggle.com/datasets/prasadahirekar/construction-project-cost-data) |
-| **Download** | [construction_project_data.csv](https://www.kaggle.com/datasets/prasadahirekar/construction-project-cost-data?resource=download) |
-| **License** | *See dataset page on Kaggle — verify and comply with the license shown there.* |
+| **Title** | Global Buildings Database Seed on Whole Life Carbon, Energy Performance, and Material Intensity (GBDB CarbEnMats) |
+| **Source** | [mroeck/carbenmats-buildings](https://github.com/mroeck/carbenmats-buildings) |
+| **Attributes** | [gbdb_attributes.xlsx](https://github.com/mroeck/carbenmats-buildings/blob/main/gbdb_attributes.xlsx) |
+| **Data** | [gbdb_data.xlsx](https://github.com/mroeck/carbenmats-buildings/blob/main/gbdb_data.xlsx) |
+| **License** | GNU GPL v3.0 |
 
-### Attribution
+### Citation
 
-This dataset is used under the terms of its license on Kaggle. When using or publishing results based on this data, provide attribution:
-
-- **Author:** prasadahirekar  
-- **Dataset:** Construction Project Cost Data  
-- **Source:** https://www.kaggle.com/datasets/prasadahirekar/construction-project-cost-data  
-
-### Variables
-
-- `Project_ID`, `Project_Name`
-- `Cost_Estimate`, `Actual_Cost`
-- `Start_Date`, `End_Date`
-- `Risk_Factor`, `Region`
+- Descriptor: https://zenodo.org/doi/10.5281/zenodo.8378938
+- Dataset: https://zenodo.org/doi/10.5281/zenodo.8363894
 
 ### Usage
 
-Place `construction_project_data.csv` in `data/raw/`. The file is excluded from version control via `.gitignore`. Others must download it from Kaggle (free account required).
+Place downloaded GBDB files (e.g. `gbdb_data.xlsx`, `gbdb_attributes.xlsx`) in `data/raw/`. Raw Excel/CSV files are excluded from version control via `.gitignore`.

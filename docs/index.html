@@ -50,97 +50,127 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="projekt-pitch-baukosten-prädiktion-aus-holzbau-kennzahlen" class="level1">
-<h1>Projekt-Pitch: Baukosten-Prädiktion aus Holzbau-Kennzahlen</h1>
+<section id="projekt-pitch-co₂-prädiktion-aus-gebäudeparametern" class="level1">
+<h1>Projekt-Pitch: CO₂-Prädiktion aus Gebäudeparametern</h1>
 <p><strong>Zielgruppe:</strong> Dozierende<br>
-<strong>Projekt:</strong> Probabilistische Analyse von Baukosten<br>
-<strong>Stand:</strong> März 2025</p>
+<strong>Projekt:</strong> Probabilistische Analyse von Gebäude-Treibhausgasemissionen<br>
+<strong>Stand:</strong> September 2025</p>
 <hr>
 <section id="ausgangslage" class="level2">
 <h2 class="anchored" data-anchor-id="ausgangslage">1. Ausgangslage</h2>
-<p>Baukosten sind schwer vorherzusagen. Investoren, Bauherren und Planer benötigen verlässliche Schätzungen, um Budgets zu planen und Risiken zu bewerten. Bisherige Ansätze stützen sich oft auf Erfahrungswerte oder grobe Faustformeln. Ein datengetriebenes Modell, das Baukosten aus wenigen, früh verfügbaren Parametern ableitet, könnte die Planungssicherheit erhöhen.</p>
+<p>Whole-Life-Carbon (WLC) von Gebäuden ist zentral für Klimastrategien in Planung und Politik – aber früh belastbare Schätzungen fehlen oft. Viele LCA-Studien sind aufwändig und kommen erst spät im Prozess. Ein datengetriebenes Modell, das die flächenbezogene Treibhausgasintensität aus wenigen, früh verfügbaren Gebäudeparametern ableitet, könnte Benchmarking und Risikoabschätzung in frühen Phasen verbessern.</p>
 <hr>
 </section>
 <section id="projektziel" class="level2">
 <h2 class="anchored" data-anchor-id="projektziel">2. Projektziel</h2>
-<p><strong>Prädiktion der Baukosten (CHF/m²) auf Basis von vier zentralen Parametern:</strong></p>
+<p><strong>Prädiktion der flächenbezogenen GHG-Emissionen auf Basis zentraler Gebäudeparameter:</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 21%">
-<col style="width: 26%">
-<col style="width: 51%">
+<col style="width: 41%">
+<col style="width: 58%">
 </colgroup>
 <thead>
 <tr class="header">
-<th>Parameter</th>
+<th>Attribut</th>
 <th>Beschreibung</th>
-<th>Ausprägungen im Datensatz</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Geschoss</strong></td>
-<td>Anzahl Geschosse / Gebäudehöhe</td>
-<td>3, 4, 5, 6, 7, 8 (aus Typologie extrahierbar)</td>
+<td><strong>bldg_struct_type</strong></td>
+<td>Structure type and main material</td>
 </tr>
 <tr class="even">
-<td><strong>Material</strong></td>
-<td>Bauweise / Konstruktionstyp</td>
-<td>Rahmenbauweise, Massivbauweise (Holz)</td>
+<td><strong>bldg_roof_type</strong></td>
+<td>Roof type in terms of geometry</td>
 </tr>
 <tr class="odd">
-<td><strong>Untergeschoss</strong></td>
-<td>Vorhandenheit unterirdischer Nutzung</td>
-<td>Vorhanden (inkl. Tiefgarage), Nicht vorhanden</td>
+<td><strong>bldg_area_gfa</strong></td>
+<td>Gross Floor Area (m²)</td>
 </tr>
 <tr class="even">
-<td><strong>Bauherrschaft</strong></td>
-<td>Bauherrentyp</td>
-<td>Privat, Institutionell, Genossenschaft, Institution</td>
+<td><strong>bldg_volume_gbv</strong></td>
+<td>Gross building volume (m³), inkl. Volumen von Wänden und Dächern</td>
+</tr>
+<tr class="odd">
+<td><strong>bldg_floors_ag</strong></td>
+<td>Number of floors above ground</td>
+</tr>
+<tr class="even">
+<td><strong>bldg_floors_bg</strong></td>
+<td>Number of floors below ground</td>
+</tr>
+<tr class="odd">
+<td><strong>bldg_use_type</strong></td>
+<td>Building type</td>
+</tr>
+<tr class="even">
+<td><strong>bldg_use_subtype</strong></td>
+<td>Building sub typology</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Zielvariable:</strong> Baukosten pro m² Hauptnutzfläche (BKP 1–5 / m² HNF oder BKP 2 / m² HNF), indexiert auf 04.2023.</p>
+<p><strong>Zielvariable:</strong> <code>GHG_sum_em_m2a</code> — summierter GHG-Emissionswert pro m² und Jahr (Whole-Life-Carbon-Intensität).</p>
 <hr>
 </section>
 <section id="datengrundlage" class="level2">
 <h2 class="anchored" data-anchor-id="datengrundlage">3. Datengrundlage</h2>
-<p><strong>Quelle:</strong> Lignum &amp; Bundesamt für Umwelt – <em>Holzbaukennzahlen für Investoren – Wohnbauten</em> (Abschlussbericht 120135)</p>
+<p><strong>Quelle:</strong> CarbEnMats / GBDB – <em>Global Buildings Database Seed on Whole Life Carbon, Energy Performance, and Material Intensity</em> (<a href="https://github.com/mroeck/carbenmats-buildings">mroeck/carbenmats-buildings</a>)</p>
 <ul>
-<li><strong>18 Fallbeispiele</strong> Schweizer Wohnbauten in Holzbauweise (2019–2022)</li>
-<li><strong>17 Neubauten</strong>, 1 Sanierung/Aufstockung</li>
-<li>Vollständige Kennwerte: Volumen (GV), Flächen (GF, HNF), Baukosten (BKP 1–5, BKP 2, BKP 214), Wirtschaftlichkeit, Nachhaltigkeit</li>
+<li>Mehr als <strong>1’200 Gebäude-Fallstudien</strong> weltweit</li>
+<li>Über <strong>5’000’000 m²</strong> erfasste Nutzfläche</li>
+<li>Attribute zu Kontext, Entwurf, LCA-Methode, Energie, Materialintensität und GHG über Lebenszyklusphasen</li>
+<li>Lizenz: GNU GPL v3.0</li>
 </ul>
-<p><strong>Datenformat:</strong> CSV (<code>data/holzbaukennzahlen_fallbeispiele.csv</code>), Semikolon-getrennt, UTF-8</p>
+<p><strong>Relevante Dateien:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Datei</th>
+<th>Inhalt</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="https://github.com/mroeck/carbenmats-buildings/blob/main/gbdb_attributes.xlsx">gbdb_attributes.xlsx</a></td>
+<td>Attributbeschreibungen</td>
+</tr>
+<tr class="even">
+<td><a href="https://github.com/mroeck/carbenmats-buildings/blob/main/gbdb_data.xlsx">gbdb_data.xlsx</a></td>
+<td>Gebäude-Datensatz (CORE + FULL)</td>
+</tr>
+</tbody>
+</table>
+<p>Zusätzlich verfügbar: CSV-Varianten (<code>gbdb_data_core.csv</code>, <code>gbdb_data_full.csv</code>), Zenodo-Releases und Data-Descriptor-Preprint.</p>
 <hr>
 </section>
 <section id="methodischer-ansatz" class="level2">
 <h2 class="anchored" data-anchor-id="methodischer-ansatz">4. Methodischer Ansatz</h2>
 <ol type="1">
-<li><strong>Feature-Engineering</strong>
+<li><strong>Datenaufbereitung</strong>
 <ul>
-<li>Geschosszahl aus Typologie extrahieren (z.B. „6-geschossig“ → 6)</li>
-<li>Material: Rahmenbauweise vs.&nbsp;Massivbauweise (binär oder kategorial)</li>
-<li>Untergeschoss: aus Spalte <code>tiefgarage</code> ableiten (Tiefgarage impliziert Untergeschoss)</li>
-<li>Bauherrschaft: kategorial (4 Klassen)</li>
+<li>Attribute und Zielvariable aus GBDB extrahieren</li>
+<li>Fehlende Werte und Ausreisser prüfen</li>
+<li>Kategoriale Features (Struktur, Dach, Nutzung) enkodieren</li>
+<li>Numerische Features (Fläche, Volumen, Geschosse) skalieren / transformieren</li>
 </ul></li>
 <li><strong>Modellierung</strong>
 <ul>
 <li>Lineare Regression als Baseline</li>
-<li>Ggf. Ridge/Lasso bei Multikollinearität</li>
-<li>Optional: einfache Ensemble-Methoden (Random Forest) zur Exploration nicht-linearer Effekte</li>
+<li>Ggf. Ridge/Lasso bei Multikollinearität (z.B. Fläche vs.&nbsp;Volumen)</li>
+<li>Optional: Random Forest / Gradient Boosting zur Exploration nicht-linearer Effekte</li>
 </ul></li>
 <li><strong>Validierung</strong>
 <ul>
-<li>Leave-one-out oder k-fold Cross-Validation (kleiner Datensatz)</li>
+<li>Train/Test-Split und k-fold Cross-Validation</li>
 <li>Metriken: RMSE, MAE, R²</li>
-<li>Sensitivitätsanalyse der Koeffizienten</li>
+<li>Residualanalyse und Plausibilitätschecks gegen bekannte WLC-Benchmarks</li>
 </ul></li>
 <li><strong>Probabilistische Erweiterung</strong>
 <ul>
 <li>Residuenverteilung modellieren</li>
 <li>Konfidenzintervalle für Punktprädiktionen</li>
-<li>Anbindung an Monte-Carlo-Simulation für Kostenrisiko (Überschreitungswahrscheinlichkeiten)</li>
+<li>Monte-Carlo-Simulation für Überschreitungswahrscheinlichkeiten (z.B. Grenzwert in kg CO₂e/m²a)</li>
 </ul></li>
 </ol>
 <hr>
@@ -149,8 +179,8 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="erwartete-herausforderungen">5. Erwartete Herausforderungen</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 47%">
-<col style="width: 52%">
+<col style="width: 48%">
+<col style="width: 51%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -160,20 +190,24 @@ ul.task-list li input[type="checkbox"] {
 </thead>
 <tbody>
 <tr class="odd">
-<td>Kleiner Stichprobenumfang (n=18)</td>
-<td>Strikte Validierung, Vorsicht bei Überinterpretation</td>
+<td>Heterogene Quellen und LCA-Scopes</td>
+<td>Scope-Filter; ggf. nur CORE-Datensatz oder einheitliche Systemgrenzen</td>
 </tr>
 <tr class="even">
-<td>Ranges statt exakter Werte (GV, GF, HNF)</td>
-<td>Mittelwerte oder Kategorien nutzen</td>
+<td>Fehlende Werte bei einzelnen Attributen</td>
+<td>Imputation oder fallweise Ausschluss; Sensitivitätsanalyse</td>
 </tr>
 <tr class="odd">
-<td>Fehlende BKP-214-Werte bei einigen Projekten</td>
-<td>Nur BKP 1–5 / BKP 2 als Zielvariable</td>
+<td>Multikollinearität (GFA ↔︎ Volumen ↔︎ Geschosse)</td>
+<td>Regularisierung, Feature-Auswahl, VIF-Checks</td>
 </tr>
 <tr class="even">
-<td>Heterogenität (Neubau vs.&nbsp;Sanierung)</td>
-<td>Fall 18 ggf. ausschliessen oder separat modellieren</td>
+<td>Regionale und typologische Heterogenität</td>
+<td>Stratifizierung nach <code>bldg_use_type</code> / Subtyp; ggf. separate Modelle</td>
+</tr>
+<tr class="odd">
+<td>Unterschiedliche Reporting-Qualität in Fallstudien</td>
+<td>Qualitätsfilter laut Attributdokumentation; Robustheitschecks</td>
 </tr>
 </tbody>
 </table>
@@ -182,23 +216,23 @@ ul.task-list li input[type="checkbox"] {
 <section id="erwarteter-nutzen" class="level2">
 <h2 class="anchored" data-anchor-id="erwarteter-nutzen">6. Erwarteter Nutzen</h2>
 <ul>
-<li><strong>Praktisch:</strong> Frühe Kostenschätzung aus wenigen, planungsrelevanten Parametern</li>
+<li><strong>Praktisch:</strong> Frühe CO₂-Schätzung aus wenigen, planungsrelevanten Gebäudeparametern</li>
 <li><strong>Methodisch:</strong> Verknüpfung von deterministischer Prädiktion mit probabilistischer Risikoanalyse</li>
-<li><strong>Wissenschaftlich:</strong> Nutzung eines strukturierten Schweizer Holzbau-Datensatzes für Baukostenforschung</li>
+<li><strong>Wissenschaftlich:</strong> Nutzung eines offenen, internationalen Whole-Life-Carbon-Datensatzes für Benchmarking und Modellierung</li>
 </ul>
 <hr>
 </section>
 <section id="nächste-schritte" class="level2">
 <h2 class="anchored" data-anchor-id="nächste-schritte">7. Nächste Schritte</h2>
 <ol type="1">
-<li>Feature-Extraktion aus CSV (Geschoss, Material, Untergeschoss, Bauherrschaft)</li>
+<li>Attribute und <code>GHG_sum_em_m2a</code> aus GBDB laden und bereinigen</li>
 <li>Deskriptive Analyse und Visualisierung</li>
 <li>Modellentwicklung und Validierung</li>
-<li>Probabilistische Erweiterung</li>
+<li>Probabilistische Erweiterung (Konfidenzintervalle, Monte Carlo)</li>
 <li>Kurzbericht mit Ergebnissen und Limitationen</li>
 </ol>
 <hr>
-<p><em>Projekt-Repository: <code>cost-overruns</code> | Daten: <code>data/holzbaukennzahlen_fallbeispiele.csv</code></em></p>
+<p><em>Projekt-Repository: <code>co2-probability</code> | Daten: CarbEnMats GBDB (<code>gbdb_data.xlsx</code>)</em></p>
 </section>
 </section>
 
