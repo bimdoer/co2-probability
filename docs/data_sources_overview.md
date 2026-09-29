@@ -1,13 +1,33 @@
 # Data Sources Overview
 
-Overview of datasets and sources considered for probabilistic analysis of construction cost overruns.
+Overview of the dataset used for probabilistic prediction of building GHG intensity (`GHG_sum_em_m2a`) from early-stage building parameters.
 
-| Dataset / Source | Region | Project Type | Main Variables | Cost Overrun Directly Available | Data Format / Accessibility | Advantage | Disadvantage |
-|------------------|--------|--------------|----------------|--------------------------------|-----------------------------|-----------|--------------|
-| **Swiss Construction Price Index (BFS)** | Switzerland | Building + Civil Engineering | Construction price index, region, building type, time series | ❌ No | CSV / Tables via BFS & opendata.swiss | Real Swiss cost dynamics, long time series | No project-level data |
-| **Construction Activity Statistics (BFS)** | Switzerland | Residential + Building | Construction investments, building type, construction volume, region | ❌ No | Tables / Open Data | Good overview of project sizes and construction volume | No actual project costs |
-| **Building and Dwelling Register (GWR)** | Switzerland | Residential / Buildings | Year of construction, use, floors, dwellings, building type | ❌ No | Open Data | Very detailed building characteristics (complexity) | No cost information |
-| **Cantonal Supplementary Credit Reports** | Switzerland | Public Construction Projects | Project name, original credit, supplementary credit, justification | ⚠️ Indirect | PDF / Political documents | Direct indications of cost overruns | Data difficult to structure |
-| **Flyvbjerg Megaproject Dataset** | International | Infrastructure | Planned costs, actual costs, construction time, project type | ✔️ Yes | Research dataset | Well-known, good overrun distributions | Focus on infrastructure, little building construction |
-| **Global Rail Megaproject Dataset** | International | Rail Projects | Cost overrun %, schedule delay, project costs | ✔️ Yes | GitHub Dataset | Clean overrun data | Rail projects only |
-| **Construction Project Cost Dataset (Kaggle)** | International | Mixed Construction | estimated_cost, actual_cost, project_duration, team_size | ✔️ Yes | CSV / Kaggle | Easy to analyse | Origin and quality partly unclear |
+| Dataset / Source | Region | Project Type | Main Variables | Target Directly Available | Data Format / Accessibility | Advantage | Disadvantage |
+|------------------|--------|--------------|----------------|---------------------------|-----------------------------|-----------|--------------|
+| **CarbEnMats GBDB** ([GitHub](https://github.com/mroeck/carbenmats-buildings)) | Global | Buildings (mixed use) | Structure, roof, GFA, volume, floors AG/BG, use type/subtype, WLC/GHG, energy, materials | ✔️ Yes (`GHG_sum_em_m2a`) | XLSX / CSV via GitHub & Zenodo (GPL-3.0) | Large open WLC database (>1'200 cases); rich attribute dictionary | Heterogeneous LCA scopes and reporting quality across sources |
+
+## Selected predictors (this project)
+
+| Attribute | Description |
+|-----------|-------------|
+| `bldg_struct_type` | Structure type and main material |
+| `bldg_roof_type` | Roof type in terms of geometry |
+| `bldg_area_gfa` | Gross Floor Area (m²) |
+| `bldg_volume_gbv` | Gross building volume (m³) |
+| `bldg_floors_ag` | Floors above ground |
+| `bldg_floors_bg` | Floors below ground |
+| `bldg_use_type` | Building type |
+| `bldg_use_subtype` | Building sub typology |
+
+## Target
+
+| Attribute | Description |
+|-----------|-------------|
+| `GHG_sum_em_m2a` | Summed GHG emissions intensity per m² and year |
+
+## Key files
+
+- Attributes: [gbdb_attributes.xlsx](https://github.com/mroeck/carbenmats-buildings/blob/main/gbdb_attributes.xlsx)
+- Data: [gbdb_data.xlsx](https://github.com/mroeck/carbenmats-buildings/blob/main/gbdb_data.xlsx)
+- Descriptor (preprint): https://zenodo.org/doi/10.5281/zenodo.8378938
+- Dataset DOI: https://zenodo.org/doi/10.5281/zenodo.8363894

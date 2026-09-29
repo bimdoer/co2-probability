@@ -1,21 +1,23 @@
-# Construction Cost Overruns — Probabilistic Analysis
+# CO₂ Probability — Building GHG Prediction
 
-A small research-style project for probabilistic analysis of cost overruns in construction projects using Monte Carlo simulation and statistical exploration in Python.
+A small research-style project for probabilistic prediction of building greenhouse-gas intensity (`GHG_sum_em_m2a`) from early-stage building parameters, using statistical modelling and Monte Carlo simulation in Python.
 
-*This project is for an academic mini-challenge on probabilistic modelling of construction cost overruns.*
+*Academic mini-challenge on probabilistic modelling of whole-life carbon for buildings.*
+
+**Data:** [CarbEnMats GBDB](https://github.com/mroeck/carbenmats-buildings)
 
 ---
 
 ## Project Structure
 
 ```
-cost-overruns/
+co2-probability/
 ├── data/
-│   ├── raw/           # Original, unprocessed data (see data/README.md for sources)
+│   ├── raw/           # Original GBDB files (see data/README.md)
 │   └── processed/     # Cleaned and transformed data
 ├── notebooks/         # Jupyter notebooks for exploration and analysis
-├── src/
-│   └── cost_overruns/ # Main package
+├── src/               # Main package (to be implemented)
+├── docs/              # Project pitch and data notes
 ├── reports/           # Written reports and outputs
 ├── figures/           # Saved plots and visualisations
 ├── tests/             # Unit tests
@@ -31,63 +33,34 @@ cost-overruns/
 
 - [uv](https://docs.astral.sh/uv/) — fast Python package and project manager
 
-Install `uv` if you don't have it:
-
 ```bash
 # Windows (PowerShell)
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
-
-# Or via pip
-pip install uv
 ```
 
-### Create and Activate Environment
-
-```bash
-# Create virtual environment and install dependencies
-uv sync
-
-# Activate the environment (optional; uv run works without activation)
-# Windows (PowerShell)
-.venv\Scripts\Activate.ps1
-
-# Windows (CMD)
-.venv\Scripts\activate.bat
-
-# macOS / Linux
-source .venv/bin/activate
-```
-
-### Install Dependencies
-
-Dependencies are declared in `pyproject.toml`. Run:
+### Create environment and install dependencies
 
 ```bash
 uv sync
 ```
-
-This creates the virtual environment and installs all dependencies.
 
 ---
 
 ## Usage
 
-### Run Notebooks
-
 ```bash
 uv run jupyter notebook
-```
-
-Or open notebooks directly in VS Code / Cursor.
-
-### Run Tests
-
-```bash
 uv run pytest
 ```
 
 ---
 
+## Docs
+
+Shareable project pitch: [`docs/index.html`](docs/index.html) (source: [`docs/projekt_pitch.md`](docs/projekt_pitch.md))
+
+---
+
 ## License
 
-MIT (or as required by your institution)
+MIT (or as required by your institution). Upstream GBDB data is GPL-3.0 — comply with that license when redistributing derived data.
