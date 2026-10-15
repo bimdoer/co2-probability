@@ -12,6 +12,7 @@ dependencies = [
     "jupyter",
     "notebook",
     "pytest",
+    "openpyxl>=3.1.5",
 ]
 
 [project.optional-dependencies]
