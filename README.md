@@ -59,6 +59,8 @@ uv run pytest
 
 Shareable project pitch: [`docs/index.html`](docs/index.html) (source: [`docs/projekt_pitch.md`](docs/projekt_pitch.md))
 
+Explorative Analyse der Pitch-Variablen: [`reports/eda_gebaeudeparameter.md`](reports/eda_gebaeudeparameter.md)
+
 ---
 
 ## License
