@@ -56,15 +56,6 @@ htmlcov/
 .uv/
 uv.lock
 
-# Local data (keep structure, ignore large/sensitive files)
-data/raw/*.csv
-data/raw/*.xlsx
-data/raw/*.xls
-data/processed/*.csv
-data/processed/*.parquet
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-
 # Reports and figures (optional: uncomment if generated locally)
 # reports/*.pdf
 # figures/*.png
