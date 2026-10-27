@@ -4,7 +4,12 @@ A small research-style project for probabilistic prediction of building greenhou
 
 *Academic mini-challenge on probabilistic modelling of whole-life carbon for buildings.*
 
-**Data:** [CarbEnMats GBDB](https://github.com/mroeck/carbenmats-buildings)
+## Data
+Two datasources have been found and combined:
+- [CarbEnMats GBDB](https://github.com/mroeck/carbenmats-buildings)
+- [mroeck CSTB](https://github.com/mroeck/Embodied-Carbon-of-European-Buildings-Database)
+They are both from the same user on github.
+
 
 ---
 
